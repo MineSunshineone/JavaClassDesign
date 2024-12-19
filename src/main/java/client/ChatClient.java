@@ -30,7 +30,6 @@ public class ChatClient extends JFrame {
     private String username;
     private Properties config;
     private JPanel bottomPanel;
-    private Set<String> loggedMessages = Collections.synchronizedSet(new HashSet<>());
 
     public ChatClient() {
         super("聊天客户端");
