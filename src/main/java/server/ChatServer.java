@@ -110,7 +110,6 @@ public class ChatServer {
     public void addOnlineUser(String username, ClientHandler handler) {
         onlineUsers.put(username, handler);
         StorageManager.createUserFile(username);
-        friendManager.loadFriendsList(username);
         broadcastStatusUpdate(username, true);
         broadcastOnlineUsers();
     }
