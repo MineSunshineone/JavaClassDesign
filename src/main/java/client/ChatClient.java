@@ -366,6 +366,12 @@ public class ChatClient extends JFrame {
                     case FRIEND_LIST:
                         updateFriendList(message.getContent());
                         break;
+                    case STATUS_UPDATE: // 添加此case
+                        handleStatusUpdate(message);
+                        break;
+                    case FRIEND_LIST_UPDATE: // 添加此case
+                        handleFriendListUpdate(message);
+                        break;
                     default:
                         System.err.println("未知的消息格式: " + message.getType());
                 }
@@ -374,6 +380,16 @@ public class ChatClient extends JFrame {
                 JOptionPane.showMessageDialog(this, "错误处理消息: " + e.getMessage());
             }
         });
+    }
+
+    private void handleStatusUpdate(Message message) {
+        String status = "online".equals(message.getContent()) ? "上线啦！" : "下线啦！";
+        appendToChatArea(String.format("%s %s", message.getFrom(), status));
+    }
+
+    private void handleFriendListUpdate(Message message) {
+        String friendListStr = message.getContent();
+        updateFriendList(friendListStr);
     }
 
     private void handleChatMessage(Message message) {
@@ -407,7 +423,6 @@ public class ChatClient extends JFrame {
         }
         saveFriendList();
     }
-
 
     private void updateOnlineClients(String onlineUsersStr) {
         DefaultListModel<String> model = (DefaultListModel<String>) onlineClientList.getModel();

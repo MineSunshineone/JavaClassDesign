@@ -182,9 +182,15 @@ public class ChatServer {
     }
 
     private void notifyFriendshipUpdate(String from, String to, boolean isFriend) {
-        // Implement the method to notify users about the friendship update
-        Message updateMsg = new Message(from, to, isFriend ? "added" : "removed", MessageType.FRIEND_LIST_UPDATE);
-        sendMessage(updateMsg);
+        // 创建包含更新好友列表的消息
+        String fromFriendList = String.join(",", friendManager.getFriendsList(from));
+        String toFriendList = String.join(",", friendManager.getFriendsList(to));
+
+        Message fromUpdateMsg = new Message(from, null, fromFriendList, MessageType.FRIEND_LIST_UPDATE);
+        Message toUpdateMsg = new Message(to, null, toFriendList, MessageType.FRIEND_LIST_UPDATE);
+
+        sendMessage(fromUpdateMsg);
+        sendMessage(toUpdateMsg);
     }
 
     private void sendMessage(Message message) {
