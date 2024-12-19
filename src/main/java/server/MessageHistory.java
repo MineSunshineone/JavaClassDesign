@@ -19,7 +19,7 @@ public class MessageHistory {
 
     public MessageHistory() {
         messageHistory = new ConcurrentHashMap<>();
-        historyFile = Paths.get("user_data/message_history.dat");
+        historyFile = Paths.get("message_history.dat");
         loadHistory();
     }
 

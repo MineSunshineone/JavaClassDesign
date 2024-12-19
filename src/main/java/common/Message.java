@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 public class Message implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     public enum MessageType {
         LOGIN, LOGOUT, CHAT, FRIEND_REQUEST, FRIEND_LIST, STATUS_UPDATE, ONLINE_USERS, REMOVE_FRIEND, FRIEND_LIST_UPDATE, OFFLINE_MESSAGE
